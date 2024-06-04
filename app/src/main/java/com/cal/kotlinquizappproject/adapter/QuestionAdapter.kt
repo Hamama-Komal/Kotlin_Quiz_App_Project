@@ -34,6 +34,7 @@ class QuestionAdapter
     override fun getItemCount() = differ.currentList.size
 
     override fun onBindViewHolder(holder: QuestionViewHolder, position: Int) {
+        // To set the answers
         val binding = QuestionViewholderBinding.bind(holder.itemView)
         binding.txtAnswer.text = differ.currentList[position]
 
@@ -52,12 +53,14 @@ class QuestionAdapter
                 currentPosition = 3
             }
         }
+        // To highlight the correct answer
         if (differ.currentList.size == 5 && currentPosition == position){
             binding.txtAnswer.setBackgroundResource(R.drawable.green_background)
             val drawable = ContextCompat.getDrawable(binding.root.context, R.drawable.tick)
             binding.txtAnswer.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null)
         }
 
+        // To highlight the wrong answer
         if(differ.currentList.size == 5){
             var clickedPosition = 0
             when(differ.currentList[4]){

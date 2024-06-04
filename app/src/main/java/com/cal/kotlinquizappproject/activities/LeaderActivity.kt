@@ -9,6 +9,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.cal.kotlinquizappproject.R
+import com.cal.kotlinquizappproject.R.drawable
 import com.cal.kotlinquizappproject.adapter.LeaderAdapter
 import com.cal.kotlinquizappproject.databinding.ActivityLeaderBinding
 import com.cal.kotlinquizappproject.domain.UserModel
@@ -36,6 +37,7 @@ class LeaderActivity : AppCompatActivity() {
 
             txtTitle1.text = loadData().get(0).name
             txtScore1.text = loadData().get(0).score.toString()
+           // profileImage1.setBackgroundResource(drawable.person1)
             val drawableResourceId1: Int = root.resources.getIdentifier(
                 loadData().get(0).picture,
                 "drawable",
@@ -107,7 +109,7 @@ class LeaderActivity : AppCompatActivity() {
         users.add(UserModel(7,"Ali","person3", 4100,))
         users.add(UserModel(8,"Mark","person2", 3800,))
         users.add(UserModel(9,"Ash","person2", 3600,))
-        users.add(UserModel(10,"Levi","person3", 3200,))
+        users.add(UserModel(10,"Levi","person4", 3200,))
         users.add(UserModel(11,"Mikasa","person8", 3000,))
         users.add(UserModel(12,"Armin","person2", 2900,))
         users.add(UserModel(13,"Zain","person4", 2700,))

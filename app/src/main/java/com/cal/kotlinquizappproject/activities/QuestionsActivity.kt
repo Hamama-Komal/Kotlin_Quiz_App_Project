@@ -16,6 +16,7 @@ import com.cal.kotlinquizappproject.databinding.ActivityQuestionsBinding
 import com.cal.kotlinquizappproject.domain.QuestionModel
 
 class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
+
     private lateinit var binding: ActivityQuestionsBinding
     var position: Int = 0
     var receivedList : MutableList<QuestionModel> = mutableListOf()
@@ -33,7 +34,6 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
         }
 
         receivedList = intent.getParcelableArrayListExtra<QuestionModel>("list")!!.toMutableList()
-
         binding.apply {
 
             btnBack.setOnClickListener {
@@ -114,6 +114,7 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
 
 
     fun loadAnswers(){
+
         val users: MutableList<String> = mutableListOf()
         users.add(receivedList[position].option1.toString())
         users.add(receivedList[position].option2.toString())
