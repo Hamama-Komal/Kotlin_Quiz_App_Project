@@ -101,8 +101,8 @@ class LeaderActivity : AppCompatActivity() {
         val users : MutableList<UserModel> = mutableListOf()
 
         users.add(UserModel(1,"Shumail","person1", 5300,))
-        users.add(UserModel(2,"Hamama","person9", 5000,))
-        users.add(UserModel(3,"Nayab","person5", 4900,))
+        users.add(UserModel(2,"Hamama","person5", 5000,))
+        users.add(UserModel(3,"Nayab","person9", 4900,))
         users.add(UserModel(4,"Surraya","person7", 4800,))
         users.add(UserModel(5,"Nimra","person1", 4700,))
         users.add(UserModel(6,"Hamza","person4", 4200,))
