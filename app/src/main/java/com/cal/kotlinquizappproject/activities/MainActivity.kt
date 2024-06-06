@@ -96,6 +96,7 @@ class MainActivity : AppCompatActivity() {
             bottomNavigation.setOnItemSelectedListener {
                 if(it == R.id.board){
                     startActivity(Intent(this@MainActivity, LeaderActivity::class.java))
+
                 }
 
             }

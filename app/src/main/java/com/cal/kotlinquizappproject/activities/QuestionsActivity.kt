@@ -39,7 +39,6 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
 
         // receivedList = intent.getParcelableArrayListExtra<QuestionModel>("list")!!.toMutableList()
 
-
         key = intent.getStringExtra("key").toString()
         round = intent.getIntExtra("round", 1)
         allScore = intent.getIntExtra("score", 0)
@@ -76,8 +75,6 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
         }
 
         setupUI()
-
-
 
     }
 
@@ -124,7 +121,7 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
                 option4 = "Rome",
                 correctAnswer = "c",
                 score = 10,
-                picPath = "hq2",
+                picPath = "hq1",
                 clickedOption = null
             )
         )
@@ -184,7 +181,7 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
                 option4 = "5",
                 correctAnswer = "b",
                 score = 10,
-                picPath = "mq2",
+                picPath = "mq8",
                 clickedOption = null
             )
         )
@@ -244,7 +241,7 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
                 option4 = "Claude Monet",
                 correctAnswer = "c",
                 score = 10,
-                picPath = "q_7",
+                picPath = "q_8",
                 clickedOption = null
             )
         )
@@ -259,7 +256,7 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
                 option4 = "NaCl",
                 correctAnswer = "b",
                 score = 10,
-                picPath = "sq4",
+                picPath = "sq1",
                 clickedOption = null
             )
         )
@@ -295,7 +292,7 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
                 option4 = "600,000 km/s",
                 correctAnswer = "a",
                 score = 10,
-                picPath = "sq7",
+                picPath = "sq2",
                 clickedOption = null
             )
         )
@@ -310,7 +307,7 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
                 option4 = "Carbon Dioxide",
                 correctAnswer = "c",
                 score = 10,
-                picPath = "sq5",
+                picPath = "sq6",
                 clickedOption = null
             )
         )
@@ -325,7 +322,7 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
                 option4 = "Platinum",
                 correctAnswer = "a",
                 score = 10,
-                picPath = "sq9",
+                picPath = "sq2",
                 clickedOption = null
             )
         )
@@ -355,7 +352,7 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
                 option4 = "Chloroplast",
                 correctAnswer = "b",
                 score = 10,
-                picPath = "sq6",
+                picPath = "sq1",
                 clickedOption = null
             )
         )
@@ -370,7 +367,7 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
                 option4 = "KCl",
                 correctAnswer = "c",
                 score = 10,
-                picPath = "sq2",
+                picPath = "sq6",
                 clickedOption = null
             )
         )
@@ -451,7 +448,7 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
                 option4 = "1948",
                 correctAnswer = "c",
                 score = 10,
-                picPath = "hq2",
+                picPath = "img",
                 clickedOption = null
             )
         )
@@ -481,7 +478,7 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
                 option4 = "Swadeshi Movement",
                 correctAnswer = "c",
                 score = 10,
-                picPath = "hq6",
+                picPath = "hq1",
                 clickedOption = null
             )
         )
@@ -496,7 +493,7 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
                 option4 = "Zia-ul-Haq",
                 correctAnswer = "b",
                 score = 10,
-                picPath = "hq2",
+                picPath = "img",
                 clickedOption = null
             )
         )
@@ -511,7 +508,7 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
                 option4 = "Salt March",
                 correctAnswer = "b",
                 score = 10,
-                picPath = "img_1",
+                picPath = "hq6",
                 clickedOption = null
             )
         )
@@ -526,7 +523,7 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
                 option4 = "1947",
                 correctAnswer = "b",
                 score = 10,
-                picPath = "hq3",
+                picPath = "img",
                 clickedOption = null
             )
         )
@@ -541,7 +538,7 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
                 option4 = "Lord Irwin",
                 correctAnswer = "c",
                 score = 10,
-                picPath = "hq5",
+                picPath = "hq6",
                 clickedOption = null
             )
         )
@@ -571,7 +568,7 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
                 option4 = "1922",
                 correctAnswer = "a",
                 score = 10,
-                picPath = "q_9",
+                picPath = "hq1",
                 clickedOption = null
             )
         )
@@ -592,7 +589,7 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
                 option4 = "5.14",
                 correctAnswer = "b",
                 score = 10,
-                picPath = "mq9",
+                picPath = "mq6",
                 clickedOption = null
             )
         )
@@ -637,7 +634,7 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
                 option4 = "1",
                 correctAnswer = "a",
                 score = 10,
-                picPath = "mq4",
+                picPath = "mq5",
                 clickedOption = null
             )
         )
@@ -652,7 +649,7 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
                 option4 = "ln(x) + C",
                 correctAnswer = "a",
                 score = 10,
-                picPath = "mq1",
+                picPath = "mq8",
                 clickedOption = null
             )
         )
@@ -667,7 +664,7 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
                 option4 = "√3/2",
                 correctAnswer = "b",
                 score = 10,
-                picPath = "mq8",
+                picPath = "mq6",
                 clickedOption = null
             )
         )
@@ -697,7 +694,7 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
                 option4 = "10",
                 correctAnswer = "c",
                 score = 10,
-                picPath = "mq2",
+                picPath = "mq6",
                 clickedOption = null
             )
         )
@@ -712,7 +709,7 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
                 option4 = "πd",
                 correctAnswer = "a",
                 score = 10,
-                picPath = "mq6",
+                picPath = "mq5",
                 clickedOption = null
             )
         )
@@ -727,7 +724,7 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
                 option4 = "13",
                 correctAnswer = "c",
                 score = 10,
-                picPath = "mq9",
+                picPath = "mq8",
                 clickedOption = null
             )
         )
@@ -748,7 +745,7 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
                 option4 = "Joyful",
                 correctAnswer = "a",
                 score = 10,
-                picPath = "eq1",
+                picPath = "eq6",
                 clickedOption = null
             )
         )
@@ -763,7 +760,7 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
                 option4 = "Sad",
                 correctAnswer = "b",
                 score = 10,
-                picPath = "eq2",
+                picPath = "eq3",
                 clickedOption = null
             )
         )
@@ -778,7 +775,7 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
                 option4 = "Mices",
                 correctAnswer = "c",
                 score = 10,
-                picPath = "eq6",
+                picPath = "eq7",
                 clickedOption = null
             )
         )
@@ -793,7 +790,7 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
                 option4 = "Over",
                 correctAnswer = "c",
                 score = 10,
-                picPath = "eq7",
+                picPath = "eq4",
                 clickedOption = null
             )
         )
@@ -808,7 +805,7 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
                 option4 = "Runs",
                 correctAnswer = "b",
                 score = 10,
-                picPath = "en1",
+                picPath = "eq6",
                 clickedOption = null
             )
         )
@@ -823,7 +820,7 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
                 option4 = "Night",
                 correctAnswer = "a",
                 score = 10,
-                picPath = "eq2",
+                picPath = "eq6",
                 clickedOption = null
             )
         )
@@ -838,7 +835,7 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
                 option4 = "Best",
                 correctAnswer = "c",
                 score = 10,
-                picPath = "eq4",
+                picPath = "eq7",
                 clickedOption = null
             )
         )
@@ -853,7 +850,7 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
                 option4 = "She don't likes ice cream.",
                 correctAnswer = "c",
                 score = 10,
-                picPath = "eq5",
+                picPath = "eq4",
                 clickedOption = null
             )
         )
@@ -883,7 +880,7 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
                 option4 = "Went",
                 correctAnswer = "d",
                 score = 10,
-                picPath = "eq6",
+                picPath = "eq4",
                 clickedOption = null
             )
         )

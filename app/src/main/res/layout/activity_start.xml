@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="92dp"
         android:fontFamily="@font/bangers"
-        android:letterSpacing="0.01"
+        android:letterSpacing="0.05"
         android:padding="3dp"
         android:text="QuizMaster"
         android:textAllCaps="true"

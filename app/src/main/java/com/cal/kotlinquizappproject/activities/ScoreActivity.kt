@@ -28,7 +28,6 @@ class ScoreActivity : AppCompatActivity() {
         binding.txtScore.text = score.toString()
 
         binding.btnHome.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
 

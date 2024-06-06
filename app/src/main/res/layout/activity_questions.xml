@@ -128,7 +128,7 @@
                 android:layout_marginHorizontal="24dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="16dp"
-                app:srcCompat="@drawable/q_1" />
+                app:srcCompat="@drawable/q_8" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_questions"
