@@ -79,7 +79,7 @@
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="190dp">
+                        android:layout_height="155dp">
 
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/profile_image3"
@@ -107,10 +107,10 @@
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="@+id/profile_image3"
-                            app:layout_constraintHorizontal_bias="0.625"
+                            app:layout_constraintHorizontal_bias="0.629"
                             app:layout_constraintStart_toStartOf="@+id/profile_image3"
                             app:layout_constraintTop_toTopOf="@+id/profile_image3"
-                            app:layout_constraintVertical_bias="0.745" />
+                            app:layout_constraintVertical_bias="0.838" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -164,7 +164,7 @@
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="190dp">
+                        android:layout_height="180dp">
 
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/profile_image1"
@@ -183,10 +183,11 @@
                             android:id="@+id/imageView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="115dp"
                             android:src="@drawable/crown"
-                            app:layout_constraintBottom_toTopOf="@+id/profile_image1"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.504"
+                            app:layout_constraintBottom_toTopOf="@+id/textView111"
+                            app:layout_constraintEnd_toEndOf="@+id/profile_image1"
+                            app:layout_constraintHorizontal_bias="0.505"
                             app:layout_constraintStart_toStartOf="@+id/profile_image1" />
 
                         <TextView
@@ -202,10 +203,10 @@
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="@+id/profile_image1"
-                            app:layout_constraintHorizontal_bias="0.58"
+                            app:layout_constraintHorizontal_bias="0.576"
                             app:layout_constraintStart_toStartOf="@+id/profile_image1"
                             app:layout_constraintTop_toTopOf="@+id/profile_image1"
-                            app:layout_constraintVertical_bias="0.885" />
+                            app:layout_constraintVertical_bias="0.983" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -258,7 +259,7 @@
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="190dp">
+                        android:layout_height="155dp">
 
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/profile_image2"
@@ -287,7 +288,7 @@
                             app:layout_constraintEnd_toEndOf="@+id/profile_image2"
                             app:layout_constraintStart_toStartOf="@+id/profile_image2"
                             app:layout_constraintTop_toTopOf="@+id/profile_image2"
-                            app:layout_constraintVertical_bias="0.745" />
+                            app:layout_constraintVertical_bias="0.835" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -14,13 +14,14 @@ import com.bumptech.glide.request.RequestOptions
 import com.cal.kotlinquizappproject.R
 import com.cal.kotlinquizappproject.adapter.QuestionAdapter
 import com.cal.kotlinquizappproject.databinding.ActivityQuestionsBinding
+import com.cal.kotlinquizappproject.domain.MusicService
 import com.cal.kotlinquizappproject.domain.QuestionModel
 
 class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
 
     private lateinit var binding: ActivityQuestionsBinding
     var position: Int = 0
-    var receivedList : MutableList<QuestionModel> = mutableListOf()
+    var receivedList: MutableList<QuestionModel> = mutableListOf()
     var allScore = 0
     var key: String = ""
     var round: Int = 1
@@ -36,7 +37,7 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
             insets
         }
 
-       // receivedList = intent.getParcelableArrayListExtra<QuestionModel>("list")!!.toMutableList()
+        // receivedList = intent.getParcelableArrayListExtra<QuestionModel>("list")!!.toMutableList()
 
 
         key = intent.getStringExtra("key").toString()
@@ -48,23 +49,27 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
                 binding.txtMode.text = "Single Player"
                 receivedList = questionList()
             }
+
             "science" -> {
                 binding.txtMode.text = "Science"
                 receivedList = scienceQuestionList()
             }
 
-            "math" ->{
+            "math" -> {
                 binding.txtMode.text = "Mathematics"
                 receivedList = mathQuestionList()
             }
+
             "history" -> {
                 binding.txtMode.text = "History"
                 receivedList = historyQuestionList()
             }
+
             "english" -> {
                 binding.txtMode.text = "English"
                 receivedList = englishQuestionList()
             }
+
             "rounds" -> {
                 loadRounds()
             }
@@ -72,10 +77,36 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
 
         setupUI()
 
+        backgroundMusic()
+
+
+    }
+
+    private fun backgroundMusic() {
+
+        // Handle music toggle button
+        binding.toggleButtonMusic.setOnCheckedChangeListener { _, isChecked ->
+
+
+            if (isChecked) {
+                startMusic()
+            } else {
+                stopMusic()
+            }
+        }
+
+    }
+
+    private fun startMusic() {
+        startService(Intent(this, MusicService::class.java))
+    }
+
+    private fun stopMusic() {
+        stopService(Intent(this, MusicService::class.java))
     }
 
 
-    fun loadAnswers(){
+    fun loadAnswers() {
 
         val users: MutableList<String> = mutableListOf()
         users.add(receivedList[position].option1.toString())
@@ -83,10 +114,11 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
         users.add(receivedList[position].option3.toString())
         users.add(receivedList[position].option4.toString())
 
-        if(receivedList[position].clickedOption!=null) users.add(receivedList[position].clickedOption.toString())
+        if (receivedList[position].clickedOption != null) users.add(receivedList[position].clickedOption.toString())
 
         val questionAdapter by lazy {
-            QuestionAdapter(receivedList[position].correctAnswer.toString(),users, this) }
+            QuestionAdapter(receivedList[position].correctAnswer.toString(), users, this)
+        }
 
         questionAdapter.differ.submitList(users)
         binding.rvQuestions.apply {
@@ -102,9 +134,8 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
     }
 
 
-
-    private fun questionList() : MutableList<QuestionModel>{
-        val questions : MutableList<QuestionModel> = mutableListOf()
+    private fun questionList(): MutableList<QuestionModel> {
+        val questions: MutableList<QuestionModel> = mutableListOf()
         questions.add(
             QuestionModel(
                 id = 1,
@@ -257,8 +288,9 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
 
         return questions
     }
-    private fun scienceQuestionList() : MutableList<QuestionModel> {
-        val questions : MutableList<QuestionModel> = mutableListOf()
+
+    private fun scienceQuestionList(): MutableList<QuestionModel> {
+        val questions: MutableList<QuestionModel> = mutableListOf()
 
         questions.add(
             QuestionModel(
@@ -412,8 +444,9 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
 
         return questions
     }
-    private fun historyQuestionList() : MutableList<QuestionModel> {
-        val questions : MutableList<QuestionModel> = mutableListOf()
+
+    private fun historyQuestionList(): MutableList<QuestionModel> {
+        val questions: MutableList<QuestionModel> = mutableListOf()
 
         questions.add(
             QuestionModel(
@@ -567,8 +600,9 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
 
         return questions
     }
-    private fun mathQuestionList() : MutableList<QuestionModel> {
-        val questions : MutableList<QuestionModel> = mutableListOf()
+
+    private fun mathQuestionList(): MutableList<QuestionModel> {
+        val questions: MutableList<QuestionModel> = mutableListOf()
 
         questions.add(
             QuestionModel(
@@ -722,8 +756,9 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
 
         return questions
     }
-    private fun englishQuestionList() : MutableList<QuestionModel> {
-        val questions : MutableList<QuestionModel> = mutableListOf()
+
+    private fun englishQuestionList(): MutableList<QuestionModel> {
+        val questions: MutableList<QuestionModel> = mutableListOf()
 
         questions.add(
             QuestionModel(
@@ -880,7 +915,7 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
 
     private fun navigateToRoundActivity() {
 
-        if(round == 5){
+        if (round == 5) {
             val intent = Intent(this@QuestionsActivity, RoundActivity::class.java)
             intent.putExtra("score", allScore)
             startActivity(intent)
@@ -906,8 +941,8 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
     }
 
 
-
     private fun setupUI() {
+
         binding.apply {
             btnBack.setOnClickListener {
                 finish()
@@ -918,15 +953,10 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
             txtQuestion.text = receivedList[position].question
 
             val drawableResourceId: Int = binding.root.resources.getIdentifier(
-                receivedList[position].picPath,
-                "drawable",
-                binding.root.context.packageName
+                receivedList[position].picPath, "drawable", binding.root.context.packageName
             )
-            Glide.with(this@QuestionsActivity)
-                .load(drawableResourceId)
-                .centerCrop()
-                .apply(RequestOptions().transform(RoundedCorners(20)))
-                .into(quesImage)
+            Glide.with(this@QuestionsActivity).load(drawableResourceId).centerCrop()
+                .apply(RequestOptions().transform(RoundedCorners(20))).into(quesImage)
 
             loadAnswers()
 
@@ -935,8 +965,7 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
 
                     if (key == "rounds" && round < 6) {
                         navigateToRoundActivity()
-                    }
-                    else {
+                    } else {
                         val intent = Intent(this@QuestionsActivity, ScoreActivity::class.java)
                         intent.putExtra("score", allScore)
                         startActivity(intent)
@@ -952,20 +981,17 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
                     txtQuestion.text = receivedList[position].question
 
                     val drawableResourceId: Int = binding.root.resources.getIdentifier(
-                        receivedList[position].picPath,
-                        "drawable",
-                        binding.root.context.packageName
+                        receivedList[position].picPath, "drawable", binding.root.context.packageName
                     )
 
-                    Glide.with(this@QuestionsActivity)
-                        .load(drawableResourceId)
-                        .centerCrop()
-                        .apply(RequestOptions().transform(RoundedCorners(20)))
-                        .into(quesImage)
+                    Glide.with(this@QuestionsActivity).load(drawableResourceId).centerCrop()
+                        .apply(RequestOptions().transform(RoundedCorners(20))).into(quesImage)
 
                     loadAnswers()
                 } else {
-                    Toast.makeText(this@QuestionsActivity, "Please select an answer", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this@QuestionsActivity, "Please select an answer", Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
 
@@ -980,20 +1006,33 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
                 txtQuestion.text = receivedList[position].question
 
                 val drawableResourceId: Int = binding.root.resources.getIdentifier(
-                    receivedList[position].picPath,
-                    "drawable",
-                    binding.root.context.packageName
+                    receivedList[position].picPath, "drawable", binding.root.context.packageName
                 )
 
-                Glide.with(this@QuestionsActivity)
-                    .load(drawableResourceId)
-                    .centerCrop()
-                    .apply(RequestOptions().transform(RoundedCorners(20)))
-                    .into(quesImage)
+                Glide.with(this@QuestionsActivity).load(drawableResourceId).centerCrop()
+                    .apply(RequestOptions().transform(RoundedCorners(20))).into(quesImage)
 
                 loadAnswers()
             }
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        stopMusic()
+        binding.toggleButtonMusic.isChecked = false
+    }
+
+    override fun onResume() {
+        super.onResume()
+        stopMusic()
+        binding.toggleButtonMusic.isChecked = false
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        stopMusic()
+        binding.toggleButtonMusic.isChecked = false
     }
 
 

@@ -12,6 +12,7 @@ import com.cal.kotlinquizappproject.R
 import com.cal.kotlinquizappproject.R.drawable
 import com.cal.kotlinquizappproject.adapter.LeaderAdapter
 import com.cal.kotlinquizappproject.databinding.ActivityLeaderBinding
+import com.cal.kotlinquizappproject.domain.PreferencesHelper
 import com.cal.kotlinquizappproject.domain.UserModel
 
 class LeaderActivity : AppCompatActivity() {
@@ -100,19 +101,26 @@ class LeaderActivity : AppCompatActivity() {
 
         val users : MutableList<UserModel> = mutableListOf()
 
-        users.add(UserModel(1,"Shumail","person1", 5300,))
-        users.add(UserModel(2,"Hamama","person5", 5000,))
-        users.add(UserModel(3,"Nayab","person9", 4900,))
-        users.add(UserModel(4,"Surraya","person7", 4800,))
-        users.add(UserModel(5,"Nimra","person1", 4700,))
-        users.add(UserModel(6,"Hamza","person4", 4200,))
-        users.add(UserModel(7,"Ali","person3", 4100,))
-        users.add(UserModel(8,"Mark","person2", 3800,))
-        users.add(UserModel(9,"Ash","person2", 3600,))
-        users.add(UserModel(10,"Levi","person4", 3200,))
-        users.add(UserModel(11,"Mikasa","person8", 3000,))
-        users.add(UserModel(12,"Armin","person2", 2900,))
-        users.add(UserModel(13,"Zain","person4", 2700,))
+        users.add(UserModel(1,"Mikasa","person1", 53000,))
+        users.add(UserModel(2,"Misa","person5", 50000,))
+        users.add(UserModel(3,"Kacee","person9", 49000,))
+        users.add(UserModel(4,"Sasha","person7", 48000,))
+        users.add(UserModel(5,"Nisa","person1", 47000,))
+        users.add(UserModel(6,"Levi","person4", 42000,))
+        users.add(UserModel(7,"Ali","person3", 41000,))
+        users.add(UserModel(8,"Mark","person4", 38000,))
+        users.add(UserModel(9,"Ash","person3", 36000,))
+
+        // To show the data of current user
+        val  userName = PreferencesHelper.getName(this)
+        val userScore = PreferencesHelper.getCoins(this)
+        val userGender = PreferencesHelper.getGender(this)
+        if(userGender == "male") {
+            users.add(UserModel(10, userName, "person2", userScore,))
+        }
+        else{
+            users.add(UserModel(10, userName, "person1", userScore,))
+        }
 
         return users
 

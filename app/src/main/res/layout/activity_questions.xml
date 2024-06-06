@@ -25,6 +25,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
+                android:padding="5dp"
+                android:gravity="center_vertical"
                 android:layout_marginHorizontal="24dp"
                 android:orientation="horizontal">
 
@@ -43,9 +45,21 @@
                     android:text="Single Player"
                     android:layout_marginStart="3dp"
                     android:textColor="@color/white"
-                    android:layout_gravity="center_vertical"
                     android:textStyle="bold"
                     android:textSize="20sp" />
+
+                <ToggleButton
+                    android:id="@+id/toggleButtonMusic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="42dp"
+                    android:padding="3dp"
+                    android:drawableStart="@drawable/music"
+                    android:background="@drawable/navy_background"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textOff="Play"
+                    android:textOn="Stop"
+                     />
 
             </LinearLayout>
 

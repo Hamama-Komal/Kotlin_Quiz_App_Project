@@ -32,7 +32,7 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_round"
-        app:srcCompat="@drawable/trophy" />
+        app:srcCompat="@drawable/coins" />
 
     <TextView
         android:id="@+id/txt1"
@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:layout_marginTop="444dp"
-        android:text="Complete All 5 Rounds to Get 1000 Points"
+        android:text="Complete All 5 Rounds to Get 5000 Points"
         android:textColor="@color/white"
         android:textSize="18dp"
         android:textStyle="bold|italic"
@@ -136,7 +136,7 @@
         android:id="@+id/btn_next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/blue_background"
         android:drawableRight="@drawable/right_arrow"
         android:drawablePadding="10dp"

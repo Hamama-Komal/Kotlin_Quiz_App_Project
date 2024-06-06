@@ -1,6 +1,7 @@
 package com.cal.kotlinquizappproject.activities
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
@@ -30,6 +31,8 @@ class MainActivity : AppCompatActivity() {
         // Fetch coins from SharedPreferences
         val coins = PreferencesHelper.getCoins(this)
         binding.txtMyCoins.text = coins.toString()
+
+        setUserData()
 
         binding.apply {
 
@@ -98,6 +101,20 @@ class MainActivity : AppCompatActivity() {
                     finish()
                 }*/
             }
+        }
+    }
+
+    private fun setUserData() {
+
+      val  userName = PreferencesHelper.getName(this)
+        binding.txtUserName.text = userName
+
+        val userGender = PreferencesHelper.getGender(this)
+        if(userGender == "male"){
+            binding.profileImage.setImageResource(R.drawable.person2)
+        }
+        else{
+            binding.profileImage.setImageResource(R.drawable.person1)
         }
     }
 
