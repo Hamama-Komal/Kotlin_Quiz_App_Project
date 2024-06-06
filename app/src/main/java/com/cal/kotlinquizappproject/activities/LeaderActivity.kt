@@ -74,13 +74,10 @@ class LeaderActivity : AppCompatActivity() {
             bottomNavigation.setItemSelected(R.id.board)
             bottomNavigation.setOnItemSelectedListener {
                 if(it == R.id.home){
-                    startActivity(Intent(this@LeaderActivity, MainActivity::class.java))
+                   // startActivity(Intent(this@LeaderActivity, MainActivity::class.java))
                     finish()
                 }
-               /* if (it == R.id.board){
-                    startActivity(Intent(this@LeaderActivity, LeaderActivity::class.java))
-                    finish()
-                }*/
+
             }
 
             val list : MutableList<UserModel> = loadData()

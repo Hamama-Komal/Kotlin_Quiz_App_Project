@@ -10,6 +10,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.cal.kotlinquizappproject.R
 import com.cal.kotlinquizappproject.databinding.ActivityMainBinding
+import com.cal.kotlinquizappproject.domain.MusicService
 import com.cal.kotlinquizappproject.domain.PreferencesHelper
 import com.cal.kotlinquizappproject.domain.QuestionModel
 import java.util.ArrayList
@@ -33,6 +34,8 @@ class MainActivity : AppCompatActivity() {
         binding.txtMyCoins.text = coins.toString()
 
         setUserData()
+
+        backgroundMusic()
 
         binding.apply {
 
@@ -80,7 +83,7 @@ class MainActivity : AppCompatActivity() {
 
 
             // To Set Up Rounds
-            btnRounds.setOnClickListener {
+            btnLevels.setOnClickListener {
 
                 showInfoDialog()
 
@@ -93,15 +96,31 @@ class MainActivity : AppCompatActivity() {
             bottomNavigation.setOnItemSelectedListener {
                 if(it == R.id.board){
                     startActivity(Intent(this@MainActivity, LeaderActivity::class.java))
-                    finish()
                 }
 
-             /*   if(it == R.id.home){
-                    startActivity(Intent(this@MainActivity, MainActivity::class.java))
-                    finish()
-                }*/
             }
         }
+    }
+
+    private fun backgroundMusic() {
+        // Handle music toggle button
+        binding.toggleButtonMusic.setOnCheckedChangeListener { _, isChecked ->
+
+
+            if (isChecked) {
+                startMusic()
+            } else {
+                stopMusic()
+            }
+        }
+    }
+
+    private fun startMusic() {
+        startService(Intent(this, MusicService::class.java))
+    }
+
+    private fun stopMusic() {
+        stopService(Intent(this, MusicService::class.java))
     }
 
     private fun setUserData() {
@@ -143,6 +162,11 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+    override fun onDestroy() {
+        super.onDestroy()
+        stopMusic()
+        binding.toggleButtonMusic.isChecked = false
+    }
 
 
 }

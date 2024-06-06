@@ -77,33 +77,11 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
 
         setupUI()
 
-        backgroundMusic()
 
 
     }
 
-    private fun backgroundMusic() {
 
-        // Handle music toggle button
-        binding.toggleButtonMusic.setOnCheckedChangeListener { _, isChecked ->
-
-
-            if (isChecked) {
-                startMusic()
-            } else {
-                stopMusic()
-            }
-        }
-
-    }
-
-    private fun startMusic() {
-        startService(Intent(this, MusicService::class.java))
-    }
-
-    private fun stopMusic() {
-        stopService(Intent(this, MusicService::class.java))
-    }
 
 
     fun loadAnswers() {
@@ -1017,23 +995,7 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
         }
     }
 
-    override fun onPause() {
-        super.onPause()
-        stopMusic()
-        binding.toggleButtonMusic.isChecked = false
-    }
 
-    override fun onResume() {
-        super.onResume()
-        stopMusic()
-        binding.toggleButtonMusic.isChecked = false
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        stopMusic()
-        binding.toggleButtonMusic.isChecked = false
-    }
 
 
 }

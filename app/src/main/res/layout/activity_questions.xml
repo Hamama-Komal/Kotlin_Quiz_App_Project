@@ -9,12 +9,14 @@
     tools:context=".activities.QuestionsActivity">
 
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -24,11 +26,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:padding="5dp"
                 android:gravity="center_vertical"
-                android:layout_marginHorizontal="24dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="5dp">
 
                 <ImageView
                     android:id="@+id/btn_back"
@@ -41,14 +41,14 @@
                     android:id="@+id/txt_mode"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
                     android:layout_weight="1"
                     android:text="Single Player"
-                    android:layout_marginStart="3dp"
                     android:textColor="@color/white"
-                    android:textStyle="bold"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
-                <ToggleButton
+                <!--<ToggleButton
                     android:id="@+id/toggleButtonMusic"
                     android:layout_width="wrap_content"
                     android:layout_height="42dp"
@@ -59,7 +59,7 @@
                     android:textSize="16sp"
                     android:textOff="Play"
                     android:textOn="Stop"
-                     />
+                     />-->
 
             </LinearLayout>
 
@@ -75,14 +75,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textColor="@color/white"
                     android:gravity="center_vertical"
-                    android:textStyle="bold"
-                    android:textSize="20sp"
                     android:padding="5dp"
-                    android:text="Question 1/10" />
+                    android:text="Question 1/10"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
-                <ImageView
+                <!--<ImageView
                     android:id="@+id/back_btn"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
@@ -94,7 +94,7 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:padding="7dp"
-                    app:srcCompat="@drawable/right_arrow" />
+                    app:srcCompat="@drawable/right_arrow" />-->
 
             </LinearLayout>
 
@@ -108,24 +108,23 @@
                 android:max="10"
                 android:progress="5"
                 app:indicatorColor="@color/blue"
-                app:trackCornerRadius="50dp"
-                />
+                app:trackCornerRadius="50dp" />
 
             <TextView
                 android:id="@+id/txt_question"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text=""
                 android:layout_margin="24dp"
-                android:textColor="@color/white"
+                android:text=""
                 android:textAlignment="center"
-                android:textStyle="bold"
-                android:textSize="20sp"/>
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <ImageView
                 android:id="@+id/ques_image"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="180dp"
                 android:layout_marginHorizontal="24dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="16dp"
@@ -137,6 +136,49 @@
                 android:layout_height="match_parent"
                 android:layout_marginVertical="8dp" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/scrollView2"
+                app:layout_constraintVertical_bias="0.0">
+
+                <TextView
+                    android:id="@+id/back_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/navy_background"
+                    android:drawableStart="@drawable/left_arrow"
+                    android:drawablePadding="16dp"
+                    android:padding="10dp"
+                    android:text="Back"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/next_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/navy_background"
+                    android:drawableEnd="@drawable/right_arrow"
+                    android:drawablePadding="16dp"
+                    android:padding="10dp"
+                    android:text="Next"
+                    android:layout_margin="20dp"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
