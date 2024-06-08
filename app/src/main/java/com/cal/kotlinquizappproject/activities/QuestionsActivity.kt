@@ -2,12 +2,15 @@ package com.cal.kotlinquizappproject.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.transition.Visibility
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
@@ -15,6 +18,7 @@ import com.cal.kotlinquizappproject.R
 import com.cal.kotlinquizappproject.adapter.QuestionAdapter
 import com.cal.kotlinquizappproject.databinding.ActivityQuestionsBinding
 import com.cal.kotlinquizappproject.domain.MusicService
+import com.cal.kotlinquizappproject.domain.PreferencesHelper
 import com.cal.kotlinquizappproject.domain.QuestionModel
 
 class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
@@ -25,6 +29,8 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
     var allScore = 0
     var key: String = ""
     var round: Int = 1
+    private lateinit var countDownTimer: CountDownTimer
+    private var timerFinished = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,38 +80,15 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
             }
         }
 
+
         setupUI()
-
-    }
-
-
-
-
-    fun loadAnswers() {
-
-        val users: MutableList<String> = mutableListOf()
-        users.add(receivedList[position].option1.toString())
-        users.add(receivedList[position].option2.toString())
-        users.add(receivedList[position].option3.toString())
-        users.add(receivedList[position].option4.toString())
-
-        if (receivedList[position].clickedOption != null) users.add(receivedList[position].clickedOption.toString())
-
-        val questionAdapter by lazy {
-            QuestionAdapter(receivedList[position].correctAnswer.toString(), users, this)
+        if (key != "rounds") {
+            startTimer()
+        }
+        else{
+            binding.txtTimer.visibility = android.view.View.GONE
         }
 
-        questionAdapter.differ.submitList(users)
-        binding.rvQuestions.apply {
-            layoutManager = LinearLayoutManager(this@QuestionsActivity)
-            adapter = questionAdapter
-        }
-
-    }
-
-    override fun amount(number: Int, clickedAnswer: String) {
-        allScore += number
-        receivedList[position].clickedOption = clickedAnswer
     }
 
 
@@ -888,14 +871,70 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
         return questions
     }
 
-    private fun navigateToRoundActivity() {
+    private fun startTimer() {
+        countDownTimer = object : CountDownTimer(60000, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                binding.txtTimer.text = "${millisUntilFinished / 1000}"
+            }
 
-        if (round == 5) {
-            val intent = Intent(this@QuestionsActivity, RoundActivity::class.java)
-            intent.putExtra("score", allScore)
-            startActivity(intent)
-            finish()
+            override fun onFinish() {
+                timerFinished = true
+                showTimeUpDialog()
+            }
+        }.start()
+    }
+
+    private fun showTimeUpDialog() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Time's Up!")
+        builder.setMessage("You have run out of time.")
+        builder.setPositiveButton("OK") { dialog, _ ->
+            dialog.dismiss()
+            if (key == "rounds" && round < 6) {
+                navigateToRoundActivity()
+            } else {
+                val intent = Intent(this@QuestionsActivity, ScoreActivity::class.java)
+                intent.putExtra("score", allScore)
+                startActivity(intent)
+                finish()
+            }
         }
+        builder.setCancelable(false)
+        builder.show()
+    }
+
+    private fun awardBonusCoins() {
+        val currentCoins = PreferencesHelper.getCoins(this)
+        PreferencesHelper.saveCoins(this, currentCoins + 500)
+    }
+
+    private fun loadAnswers() {
+        val users: MutableList<String> = mutableListOf()
+        users.add(receivedList[position].option1.toString())
+        users.add(receivedList[position].option2.toString())
+        users.add(receivedList[position].option3.toString())
+        users.add(receivedList[position].option4.toString())
+
+        if (receivedList[position].clickedOption != null) users.add(receivedList[position].clickedOption.toString())
+
+        val questionAdapter by lazy {
+            QuestionAdapter(receivedList[position].correctAnswer.toString(), users, this)
+        }
+
+        questionAdapter.differ.submitList(users)
+        binding.rvQuestions.apply {
+            layoutManager = LinearLayoutManager(this@QuestionsActivity)
+            adapter = questionAdapter
+        }
+        binding.rvQuestions.setHasFixedSize(true)
+    }
+
+    override fun amount(number: Int, clickedAnswer: String) {
+        allScore += number
+        receivedList[position].clickedOption = clickedAnswer
+    }
+
+    private fun navigateToRoundActivity() {
         val intent = Intent(this@QuestionsActivity, RoundActivity::class.java)
         intent.putExtra("round", round)
         intent.putExtra("score", allScore)
@@ -915,9 +954,7 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
         position = 0
     }
 
-
     private fun setupUI() {
-
         binding.apply {
             btnBack.setOnClickListener {
                 finish()
@@ -936,9 +973,13 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
             loadAnswers()
 
             nextBtn.setOnClickListener {
-                if (progressBar2.progress == 10) {
+                if (timerFinished) return@setOnClickListener
 
-                    if (key == "rounds" && round < 6) {
+                if (progressBar2.progress == 10) {
+                    if (key != "rounds" && !timerFinished) {
+                        awardBonusCoins()
+                    }
+                    if (key == "rounds" && round < 5) {
                         navigateToRoundActivity()
                     } else {
                         val intent = Intent(this@QuestionsActivity, ScoreActivity::class.java)
@@ -992,7 +1033,10 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
         }
     }
 
-
-
-
+    override fun onDestroy() {
+        super.onDestroy()
+        if (::countDownTimer.isInitialized) {
+            countDownTimer.cancel()
+        }
+    }
 }
