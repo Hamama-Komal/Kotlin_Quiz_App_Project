@@ -96,7 +96,7 @@ class MainActivity : AppCompatActivity() {
             bottomNavigation.setOnItemSelectedListener {
                 if(it == R.id.board){
                     startActivity(Intent(this@MainActivity, LeaderActivity::class.java))
-
+                    bottomNavigation.setItemSelected(R.id.board)
                 }
 
             }
@@ -106,8 +106,6 @@ class MainActivity : AppCompatActivity() {
     private fun backgroundMusic() {
         // Handle music toggle button
         binding.toggleButtonMusic.setOnCheckedChangeListener { _, isChecked ->
-
-
             if (isChecked) {
                 startMusic()
             } else {
@@ -127,14 +125,14 @@ class MainActivity : AppCompatActivity() {
     private fun setUserData() {
 
       val  userName = PreferencesHelper.getName(this)
-        binding.txtUserName.text = userName
+        binding.txtUserName.text = "Welcome $userName!!"
 
         val userGender = PreferencesHelper.getGender(this)
         if(userGender == "male"){
             binding.profileImage.setImageResource(R.drawable.person2)
         }
         else{
-            binding.profileImage.setImageResource(R.drawable.person1)
+            binding.profileImage.setImageResource(R.drawable.person5)
         }
     }
 

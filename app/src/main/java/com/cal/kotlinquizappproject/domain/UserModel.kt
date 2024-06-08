@@ -4,5 +4,5 @@ data class UserModel(
     val id:Int,
     val name:String,
     val picture:String,
-    val score:Int
+    var score:Int
 )

@@ -26,7 +26,7 @@ class LeaderAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         val item = differ.currentList[position]
         binding.txtName.text = item.name
         binding.txtScore.text = item.score.toString()
-        binding.txtId.text = (position+3).toString()
+        binding.txtId.text = (position+4).toString()
 
         val drawableResourceId: Int = binding.root.resources.getIdentifier(
             differ.currentList[position].picture,

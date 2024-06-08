@@ -292,7 +292,7 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
                 option4 = "600,000 km/s",
                 correctAnswer = "a",
                 score = 10,
-                picPath = "sq2",
+                picPath = "sq1",
                 clickedOption = null
             )
         )
@@ -322,7 +322,7 @@ class QuestionsActivity : AppCompatActivity(), QuestionAdapter.score {
                 option4 = "Platinum",
                 correctAnswer = "a",
                 score = 10,
-                picPath = "sq2",
+                picPath = "sq1",
                 clickedOption = null
             )
         )

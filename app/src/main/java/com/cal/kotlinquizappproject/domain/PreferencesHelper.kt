@@ -21,12 +21,14 @@ object PreferencesHelper {
         editor.putInt(KEY_COINS, coins)
         editor.apply()
     }
+
     fun saveName(context: Context, name: String) {
 
         val editor = getPreferences(context).edit()
         editor.putString(KEY_NAME, name)
         editor.apply()
     }
+
     fun saveGender(context: Context, gender: String) {
 
         val editor = getPreferences(context).edit()
@@ -35,18 +37,17 @@ object PreferencesHelper {
     }
 
 
-
     fun getCoins(context: Context): Int {
         return getPreferences(context).getInt(KEY_COINS, 0)
     }
+
     fun getName(context: Context): String {
         return getPreferences(context).getString(KEY_NAME, "").toString()
     }
-     fun getGender(context: Context): String {
+
+    fun getGender(context: Context): String {
         return getPreferences(context).getString(KEY_GENDER, "").toString()
     }
-
-
 
 
 }
