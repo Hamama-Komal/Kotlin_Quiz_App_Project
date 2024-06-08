@@ -8,6 +8,20 @@ class UserRepository(private val context: Context) {
 
     private val dbHelper = UserDatabaseHelper(context)
 
+    fun insertOrUpdateUser(user: UserModel) {
+        val existingUser = getUserByName(user.name)
+        if (existingUser != null) {
+            if (user.score > existingUser.score) {
+                // Update the existing user with the higher score
+                val updatedUser = existingUser.copy(score = user.score, picture = user.picture)
+                updateUser(updatedUser)
+            }
+        } else {
+            // Insert new user
+            insertUser(user)
+        }
+    }
+
     fun insertUser(user: UserModel) {
         val db = dbHelper.writableDatabase
         val values = ContentValues().apply {
@@ -44,8 +58,8 @@ class UserRepository(private val context: Context) {
         db.close()
     }
 
-    // New method to update user
-    fun updateUser(user: UserModel) {
+    // Method to update user
+    private fun updateUser(user: UserModel) {
         val db = dbHelper.writableDatabase
         val values = ContentValues().apply {
             put(UserDatabaseHelper.COLUMN_NAME, user.name)
@@ -54,5 +68,22 @@ class UserRepository(private val context: Context) {
         }
         db.update(UserDatabaseHelper.TABLE_USERS, values, "${UserDatabaseHelper.COLUMN_ID} = ?", arrayOf(user.id.toString()))
         db.close()
+    }
+
+    // Method to get user by name
+    fun getUserByName(name: String): UserModel? {
+        val db = dbHelper.readableDatabase
+        val cursor: Cursor = db.query(UserDatabaseHelper.TABLE_USERS, null, "${UserDatabaseHelper.COLUMN_NAME} = ?", arrayOf(name), null, null, null)
+        var user: UserModel? = null
+        if (cursor.moveToFirst()) {
+            val id = cursor.getInt(cursor.getColumnIndexOrThrow(UserDatabaseHelper.COLUMN_ID))
+            val userName = cursor.getString(cursor.getColumnIndexOrThrow(UserDatabaseHelper.COLUMN_NAME))
+            val picture = cursor.getString(cursor.getColumnIndexOrThrow(UserDatabaseHelper.COLUMN_PICTURE))
+            val score = cursor.getInt(cursor.getColumnIndexOrThrow(UserDatabaseHelper.COLUMN_SCORE))
+            user = UserModel(id, userName, picture, score)
+        }
+        cursor.close()
+        db.close()
+        return user
     }
 }

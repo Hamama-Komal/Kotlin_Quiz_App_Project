@@ -56,6 +56,10 @@ dependencies {
     // Glide Image Loader
     implementation ("com.github.bumptech.glide:glide:4.16.0")
 
-    // Circluar Image View
+    // Circular Image View
     implementation ("de.hdodenhof:circleimageview:3.1.0")
+
+    // TextView Animation
+    implementation ("com.daimajia.easing:library:2.0@aar")
+    implementation ("com.daimajia.androidanimations:library:2.3@aar")
 }

@@ -122,6 +122,7 @@
             android:textColor="@color/white"
             android:textStyle="bold"
             app:backgroundTint="@color/blue" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

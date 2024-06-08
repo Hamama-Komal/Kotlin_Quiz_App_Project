@@ -2,7 +2,6 @@ package com.cal.kotlinquizappproject.activities
 
 import android.os.Bundle
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -12,7 +11,6 @@ import com.bumptech.glide.Glide
 import com.cal.kotlinquizappproject.R
 import com.cal.kotlinquizappproject.adapter.LeaderAdapter
 import com.cal.kotlinquizappproject.databinding.ActivityLeaderBinding
-import com.cal.kotlinquizappproject.domain.PreferencesHelper
 import com.cal.kotlinquizappproject.domain.UserModel
 import com.cal.kotlinquizappproject.domain.UserRepository
 import kotlinx.coroutines.CoroutineScope
@@ -85,13 +83,6 @@ class LeaderActivity : AppCompatActivity() {
 
             // Insert initial users into the database
             users.forEach { userRepository.insertUser(it) }
-
-            // Add current user data
-            val userName = PreferencesHelper.getName(this)
-            val userScore = PreferencesHelper.getCoins(this)
-            val userGender = PreferencesHelper.getGender(this)
-            val userPicture = if (userGender == "male") "person2" else "person5"
-            userRepository.insertUser(UserModel(10, userName, userPicture, userScore))
         }
     }
 
@@ -99,15 +90,6 @@ class LeaderActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.Main).launch {
             val users = withContext(Dispatchers.IO) { userRepository.getAllUsers() }
             val sortedUsers = users.sortedByDescending { it.score }
-            val currentUserName = PreferencesHelper.getName(this@LeaderActivity)
-            val currentUserScore = PreferencesHelper.getCoins(this@LeaderActivity)
-
-            // Update current user's score in the database
-            val currentUser = sortedUsers.find { it.name == currentUserName }
-            currentUser?.let {
-                it.score = currentUserScore
-                withContext(Dispatchers.IO) { userRepository.updateUser(it) }
-            }
 
             // Refresh the list
             val updatedUsers = withContext(Dispatchers.IO) { userRepository.getAllUsers() }
@@ -135,11 +117,6 @@ class LeaderActivity : AppCompatActivity() {
 
                 val remainingUsers = updatedSortedUsers.drop(3)
                 leaderAdapter.differ.submitList(remainingUsers)
-
-                // Find the current user's position
-                val currentUserPosition = updatedSortedUsers.indexOfFirst { it.name == currentUserName } + 1
-                // binding.txtUserPosition.text = "Your Position: $currentUserPosition"
-               Toast.makeText(this@LeaderActivity, "Your Position: $currentUserPosition", Toast.LENGTH_SHORT).show()
             }
         }
     }
